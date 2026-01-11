@@ -1,0 +1,59 @@
+# --- Secrets / local config ---
+.env
+.env.*
+!.env.example
+
+# --- Flutter / Dart ---
+.dart_tool/
+.packages
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutterVersion
+.metadata
+coverage/
+
+# --- IDEs ---
+.idea/
+.vscode/
+*.iml
+
+# --- macOS ---
+.DS_Store
+
+# --- Logs ---
+*.log
+
+# --- Android / Gradle ---
+android/.gradle/
+android/local.properties
+android/**/GeneratedPluginRegistrant.java
+**/gradle-wrapper.jar
+
+# --- iOS / Xcode ---
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/ephemeral/
+ios/Runner/GeneratedPluginRegistrant.*
+ios/Runner/Flutter/App.framework
+ios/Runner/Flutter/Flutter.framework
+ios/Runner/Flutter/Flutter.podspec
+
+# Xcode user settings
+ios/**/*.xcuserstate
+ios/**/*.xcuserdata/
+ios/**/DerivedData/
+*.xcuserstate
+
+# CocoaPods lock (choix: recommandé de le committer pour iOS)
+# On le COMMIT en général, donc on ne l'ignore pas.
+# ios/Podfile.lock
+
+# --- Signing / Certificates (NE JAMAIS COMMIT) ---
+*.p12
+*.pem
+*.cer
+*.mobileprovision
