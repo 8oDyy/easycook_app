@@ -3,6 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../core/presentation/screens/main_shell_screen.dart';
+import '../features/home/presentation/screens/home_screen.dart';
+import '../features/discover/presentation/screens/discover_screen.dart';
+import '../features/ai_generate/presentation/screens/ai_generate_screen.dart';
+import '../features/favorites/presentation/screens/favorites_screen.dart';
+import '../features/profile/presentation/screens/profile_screen.dart';
+
 final routerProvider = Provider<GoRouter>((ref) {
   bool isSupabaseInitialized = false;
   try {
@@ -44,7 +51,48 @@ final routerProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
       GoRoute(path: '/auth/login', builder: (context, state) => const LoginScreen()),
-      GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
+      GoRoute(
+        path: '/ai-generate',
+        builder: (context, state) => const AiGenerateScreen(),
+      ),
+      ShellRoute(
+        builder: (context, state, child) {
+          int currentIndex = 0;
+          switch (state.matchedLocation) {
+            case '/home':
+              currentIndex = 0;
+              break;
+            case '/discover':
+              currentIndex = 1;
+              break;
+            case '/favorites':
+              currentIndex = 3;
+              break;
+            case '/profile':
+              currentIndex = 4;
+              break;
+          }
+          return MainShellScreen(currentIndex: currentIndex, child: child);
+        },
+        routes: [
+          GoRoute(
+            path: '/home',
+            builder: (context, state) => const HomeScreen(),
+          ),
+          GoRoute(
+            path: '/discover',
+            builder: (context, state) => const DiscoverScreen(),
+          ),
+          GoRoute(
+            path: '/favorites',
+            builder: (context, state) => const FavoritesScreen(),
+          ),
+          GoRoute(
+            path: '/profile',
+            builder: (context, state) => const ProfileScreen(),
+          ),
+        ],
+      ),
     ],
   );
 });
@@ -66,18 +114,6 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Login')),
       body: const Center(child: Text('Login Screen - To be implemented')),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('EasyCook')),
-      body: const Center(child: Text('Home Screen - To be implemented')),
     );
   }
 }
