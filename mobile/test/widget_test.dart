@@ -6,7 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:easycook_app/app/app.dart';
-import 'package:flutter/material.dart';
+import 'package:easycook_app/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -15,6 +15,6 @@ void main() {
     await tester.pumpWidget(const ProviderScope(child: EasyCookApp()));
     await tester.pumpAndSettle();
 
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    expect(find.byType(HomeScreen), findsOneWidget);
   });
 }
